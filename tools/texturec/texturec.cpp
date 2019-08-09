@@ -411,9 +411,9 @@ bimg::ImageContainer* convert(bx::AllocatorI* _allocator, const void* _inputData
 					bimg::imageDecodeToRgba32f(_allocator
 						, rgba
 						, mip.m_data
-						, dstMip.m_width
-						, dstMip.m_height
-						, dstMip.m_depth
+						, mip.m_width
+						, mip.m_height
+						, mip.m_depth
 						, dstMip.m_width*16
 						, mip.m_format
 						);
@@ -522,7 +522,7 @@ bimg::ImageContainer* convert(bx::AllocatorI* _allocator, const void* _inputData
 						, mip.m_width
 						, mip.m_height
 						, mip.m_depth
-						, mip.m_width*16
+						, dstMip.m_width*16
 						, mip.m_format
 						);
 
@@ -742,7 +742,7 @@ bimg::ImageContainer* convert(bx::AllocatorI* _allocator, const void* _inputData
 						, mip.m_data
 						, mip.m_width
 						, mip.m_height
-						, mip.m_width*4
+						, dstMip.m_width*4
 						, mip.m_format
 						);
 
@@ -750,9 +750,9 @@ bimg::ImageContainer* convert(bx::AllocatorI* _allocator, const void* _inputData
 					if (_options.alphaTest)
 					{
 						coverage = bimg::imageAlphaTestCoverage(bimg::TextureFormat::RGBA8
-							, mip.m_width
-							, mip.m_height
-							, mip.m_width*4
+							, dstMip.m_width
+							, dstMip.m_height
+							, dstMip.m_width*4
 							, rgba
 							, _options.edge
 							);
@@ -849,15 +849,15 @@ bimg::ImageContainer* convert(bx::AllocatorI* _allocator, const void* _inputData
 							, output->m_data
 							, mip.m_width
 							, mip.m_height
-							, mip.m_width*mip.m_bpp/8
+							, dstMip.m_width*dstMip.m_bpp/8
 							, outputFormat
 							);
 
 						float result = bimg::imageQualityRgba8(
 							  ref
 							, rgba
-							, uint16_t(mip.m_width)
-							, uint16_t(mip.m_height)
+							, uint16_t(dstMip.m_width)
+							, uint16_t(dstMip.m_height)
 							);
 
 						bx::printf("%f\n", result);
